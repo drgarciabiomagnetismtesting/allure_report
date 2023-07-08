@@ -12,3 +12,10 @@ Tests/About_Us_Blogs/About_Us/__pycache__
 Pages/HomePage_ContactUs/Home/__pycache__
 Tests/About_Us_Blogs/Blogs/__pycache__
 Pages/HomePage_ContactUs/Footer/__pycache__
+Element_Locator/__pycache__
+Element_Locator/About_Us_Blogs/Blogs/__pycache__
+Element_Locator/About_Us_Blogs/About_Us/__pycache__
+Element_Locator/HomePage_ContactUs/__pycache__
+Element_Locator/HomePage_ContactUs/Contact_Us/__pycache__
+Element_Locator/HomePage_ContactUs/Footer/__pycache__
+*__pycache__
