@@ -54,7 +54,6 @@ class BasePage:
         # allure.attach(element_screenshot,name= "Element Screenshot", attachment_type= allure.attachment_type.PNG)
         element.click()
     
-    @allure.step("Clicked On Element")
     def do_click_only(self,by_locator):
         """
         This Function used to click on the selected web element 
