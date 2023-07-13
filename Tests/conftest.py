@@ -29,9 +29,9 @@ def pytest_sessionfinish(session, exitstatus):
         # Implement your report upload logic here
     else:
         report_dir = "Allure_Generated_Files"
-        allure_dir = "allure-report"
+        allure_dir = "docs"
         # shutil.rmtree(allure_dir, ignore_errors=True)
-        # allure_cmd = f"allure generate {report_dir} --clean"
+        allure_cmd = f"allure generate {report_dir} --clean"
         # open_browser = "xdg-open http://127.0.0.1:5500/allure-report/"
         # os.system(allure_cmd)
         # os.system(open_browser)
