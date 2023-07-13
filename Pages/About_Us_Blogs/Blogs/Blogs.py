@@ -4,6 +4,7 @@ from Element_Locator.BasePageElements import BasePageElements
 from Element_Locator.About_Us_Blogs.Blogs.Blogs_Elements import BlogsElements
 import time
 import allure
+import requests
 
 
 
@@ -111,9 +112,22 @@ class Blogs(BasePage):
             self.driver.back()
         return search_heading
     
+    def generate_random_sentence(self):
+        url = "https://loripsum.net/api/1/short"
+
+        # Send GET request to the loripsum API
+        response = requests.get(url)
+
+        if response.status_code == 200:
+            # Extract the sentence from the response
+            sentence = response.text.strip().removeprefix('<p>').removesuffix('</p>')
+
+            return sentence
+
+        return None
     @allure.step("Checking Post Comments Option")
-    def check_post_comments(self,comment,name,email,website):
-        
+    def check_post_comments(self,name,email,website):
+        comment = self.generate_random_sentence()
         with allure.step(f"Typing {comment} in Comment Box"):
             self.do_click_only(BlogsElements.comment_text_area)
             time.sleep(0.3)

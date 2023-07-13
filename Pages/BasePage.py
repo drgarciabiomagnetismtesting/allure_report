@@ -22,9 +22,19 @@ class BasePage:
         
         element = element = self.wait.until(EC.visibility_of_element_located(by_locator))
         action.scroll_to_element(element).perform()
+
+    @allure.step("Scroll To The Element")
+    def do_scroll_to_element_only(self,element):
+        action = ActionChains(self.driver)
+        action.scroll_to_element(element).perform()
         # element_screenshot = element.screenshot_as_png
         # allure.attach(element_screenshot,name= "Element Screenshot", attachment_type= allure.attachment_type.PNG)
 
+    @allure.step("Move To The Element")
+    def do_click_to_element_by_offset(self,element,x,y):
+        action = ActionChains(self.driver)
+        action.move_to_element_with_offset(element,x,y).click().perform()
+        # action.click(element).perform()
     @allure.step("Move Cursor To The Element")
     def do_move_cursor_to_element_only(self,by_locator):
         action = ActionChains(self.driver)
@@ -40,8 +50,8 @@ class BasePage:
         
         element = element = self.wait.until(EC.visibility_of_element_located(by_locator))
         action.move_to_element(element).perform()
-        element_screenshot = element.screenshot_as_png
-        allure.attach(element_screenshot,name= "Element Screenshot", attachment_type= allure.attachment_type.PNG)
+        # element_screenshot = element.screenshot_as_png
+        # allure.attach(element_screenshot,name= "Element Screenshot", attachment_type= allure.attachment_type.PNG)
     @allure.step("Clicked On Element")
     def do_click(self,by_locator):
         """
@@ -85,6 +95,23 @@ class BasePage:
             return True
         else:
             return False
+
+    @allure.step("Checking Visibilty Of Element")
+    def get_element_visibility_only(self,by_locator):
+        """
+        This Function used to check the visibility of a web Element and retured True/False
+        """
+        element_p = self.wait.until(EC.presence_of_element_located(by_locator))
+        
+        width = element_p.size['width']
+        height = element_p.size['height']
+
+        if width>0 and height>0:
+            with allure.step("Visible"):
+                return True
+        else:
+            with allure.step("Not Visible"):
+                return False
     
     @allure.step("Checking Visibilty Of Element")
     def get_element_visibility_div(self,by_locator):
@@ -110,6 +137,15 @@ class BasePage:
         element_screenshot = element.screenshot_as_png
 
         allure.attach(element_screenshot,name= "Element Screenshot", attachment_type= allure.attachment_type.PNG)
+        return element.text
+    
+    @allure.step("Taking Text from element")
+    def get_text_from_element_only(self,by_locator):
+        """
+        This Function used to get the text value from the web element and returned the value
+        """
+
+        element = self.wait.until(EC.visibility_of_element_located(by_locator))
         return element.text
     
     @allure.step("Taking Text from element")
@@ -150,6 +186,16 @@ class BasePage:
         dropdown = Select(element)
         dropdown.select_by_value(value)
     
+    @allure.step("Selecting Dropdown Option")
+    def do_select_by_text(self,by_locator,value):
+        """
+        This function used to select the option from dropdown 
+        """
+        element = self.wait.until(EC.visibility_of_element_located(by_locator))
+
+        dropdown = Select(element)
+        dropdown.select_by_visible_text(value)
+    
     @allure.step("Taking Website Title")
     def get_title(self):
         """
@@ -183,6 +229,15 @@ class BasePage:
 
         # allure.attach(element_screenshot,name= "Element Screenshot", attachment_type= allure.attachment_type.PNG)
         return element.get_attribute('href')
+    
+    @allure.step("Taking tag attributes")
+    def get_tag_attribute(self,by_locator,attribues):
+
+        element = self.wait.until(EC.visibility_of_element_located(by_locator))
+        # element_screenshot = element.screenshot_as_png
+
+        # allure.attach(element_screenshot,name= "Element Screenshot", attachment_type= allure.attachment_type.PNG)
+        return element.get_attribute(attribues)
     def get_element_background_visibility(self,by_locator,locator_image_url):
         """
         This Function used to check the visibility of a web Element and retured True/False

@@ -50,7 +50,7 @@ class TestBlogs(BaseTest):
         try:
             read_more_elements_status = self.blogObj.check_read_more_page_element_visibility_status()
             search_option_working_status = self.blogObj.check_search_action_working_status("Biomagnetism")
-            post_comment_status = self.blogObj.check_post_comments("Biomagnetism Comment Test","Kishore","test@gmail.com","https://www.vmokshagroup.com/")
+            post_comment_status = self.blogObj.check_post_comments("Kishore","test@gmail.com","https://www.vmokshagroup.com/")
             
             if read_more_elements_status and search_option_working_status and post_comment_status:
                 assert True
