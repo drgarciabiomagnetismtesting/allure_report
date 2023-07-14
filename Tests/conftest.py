@@ -55,8 +55,10 @@ def pytest_configure(config):
     print("Initializing pytest...")
     delete_allure_report = "rm -rf Allure_Generated_Files"
     create_allure_report = "mkdir Allure_Generated_Files"
+    copy_system_environment = "cp Data_Files/environment.properties Allure_Generated_Files"
     os.system(delete_allure_report)
     time.sleep(5)
     os.system(create_allure_report)
+    os.system(copy_system_environment)
     
 

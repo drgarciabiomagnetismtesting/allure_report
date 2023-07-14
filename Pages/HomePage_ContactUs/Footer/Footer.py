@@ -166,7 +166,7 @@ class Footer(BasePage):
     def get_copyright_and_design_by_status(self):
 
         copyright_element = self.get_text_from_element(FooterElements.copyright)
-        if "Copyright © 2023 DrGarciaBioMagnetism | Designed by" in copyright_element:
+        if "Copyright © 2023 eGrow Plants | Designed by Helenzys Inc" in copyright_element:
             with allure.step("Copyrights And Design By Rights Is Valid"):
                 return True
         else: 

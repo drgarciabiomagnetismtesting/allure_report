@@ -4,8 +4,8 @@ from selenium.webdriver.common.by import By
 class HomePageElements:
     #<------------Test 1--------------->
 
-    header_logo = (By.XPATH,"(//img[@alt='DrGarciaBioMagnetism'])[1]")
-    footer_logo = (By.XPATH,"(//img[@class='wp-image-15537'])")
+    header_logo = (By.XPATH,"(//span[@class='site-logo-img'])[1]")
+    footer_logo = (By.XPATH,"(//img[@class='wp-image-15537'])[1]")
 
     #<------------Test 2---------------->
     nav_links = (By.XPATH,"//ul[@id='ast-hf-menu-1']/li/a/span[@class='menu-text']")

@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 class StoreElements:
 
     store = (By.XPATH,"(//span[@class='menu-text'][normalize-space()='Store'])[1]")
-    store_dropdown = (By.XPATH,"(//ul[@class='sub-menu'])[5]")
+    store_dropdown = (By.XPATH,"(//ul[@class='sub-menu'])[6]")
     store_dropdown_list = (By.XPATH,"(//ul[@class='sub-menu'])[5]/li")
 
     nutritional_health = (By.XPATH,"(//span[@class='menu-text'][normalize-space()='Nutritional Health'])[1]")
