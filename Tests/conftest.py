@@ -4,6 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 import undetected_chromedriver as uc
 import os
 import shutil
+import time
 
 @pytest.fixture(scope= 'class')
 def init_driver(request):
@@ -23,23 +24,39 @@ def init_driver(request):
 
 @pytest.hookimpl(tryfirst=True)
 def pytest_sessionfinish(session, exitstatus):
-    if exitstatus == pytest.ExitCode.OK:
-        # Test session passed
-        print("Test session passed. Uploading report...")
-        # Implement your report upload logic here
-    else:
         report_dir = "Allure_Generated_Files"
         allure_dir = "docs"
         # shutil.rmtree(allure_dir, ignore_errors=True)
         allure_cmd = f"allure generate {report_dir} --clean"
-        # open_browser = "xdg-open http://127.0.0.1:5500/allure-report/"
-        # os.system(allure_cmd)
-        # os.system(open_browser)
+        remove_docs_cmd = f"rm -rf docs"
+        rename_allure_report = f"mv allure-report {allure_dir}"
+
+        git_status = "git status"
+        git_add = "git add ."
+        git_commit = "git commit -m 'auto commit by pytest' "
+        git_push = "git push origin2 master"
+      
+        os.system(allure_cmd)
         
-        print("Test session failed. Report not uploaded.")
+        os.system(remove_docs_cmd)
+        time.sleep(5)
+        os.system(rename_allure_report)
+        os.system(git_status)
+        os.system(git_add)
+        os.system(git_commit)
+        os.system(git_push)
+
+       
+        
+        print("Report Hosted : https://drgarciabiomagnetismtesting.github.io/allure_report/")
 
 def pytest_configure(config):
-    # Perform initialization or setup actions here
+    
     print("Initializing pytest...")
-    # Additional setup logic goes here
+    delete_allure_report = "rm -rf Allure_Generated_Files"
+    create_allure_report = "mkdir Allure_Generated_Files"
+    os.system(delete_allure_report)
+    time.sleep(5)
+    os.system(create_allure_report)
+    
 
