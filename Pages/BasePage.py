@@ -199,7 +199,7 @@ class BasePage:
     @allure.step("Taking Website Title")
     def get_title(self):
         """
-        This function used to return the website title
+        This function used to return the  website title
         """
 
         return self.driver.title
