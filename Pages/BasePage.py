@@ -238,6 +238,16 @@ class BasePage:
 
         # allure.attach(element_screenshot,name= "Element Screenshot", attachment_type= allure.attachment_type.PNG)
         return element.get_attribute(attribues)
+    
+    @allure.step("Checking Element Clickable Status")
+    def get_element_clickable_status(self,by_locator,options=0):
+
+        if options == 1:
+            element = by_locator
+        else:   
+            element = self.wait.until(EC.element_to_be_clickable(by_locator))
+        return bool(element)
+
     def get_element_background_visibility(self,by_locator,locator_image_url):
         """
         This Function used to check the visibility of a web Element and retured True/False
