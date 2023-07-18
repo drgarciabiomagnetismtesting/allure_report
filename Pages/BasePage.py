@@ -195,6 +195,7 @@ class BasePage:
 
         dropdown = Select(element)
         dropdown.select_by_visible_text(value)
+        time.sleep(5)
     
     @allure.step("Taking Website Title")
     def get_title(self):
