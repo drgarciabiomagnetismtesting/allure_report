@@ -122,5 +122,23 @@ class TestBiomagnetismService(BaseTest):
             allure.attach(self.biomagnetisServicemObj.driver.get_screenshot_as_png(),name="Load More Functionality Error", attachment_type= allure.attachment_type.PNG)
             with allure.step("Load More Functionality Is Failed"):
                 assert False
+    
+    @allure.title("Test Case 19 : Appointment Contact Information") 
+    @allure.description_html("""
+    <br><b>Test Case Description:</b>
+    <br><br>validate, address with other cities and appointment dates and hours
+    
+    <br><br><b>Expeceted Results:</b>
+    <br><br>address and contact deatils with appropriate appointment date and hours to be viewed
+    
+    """)
+    def test_appointment_details_correct(self):
+        
+        try:
+            assert self.biomagnetisServicemObj.is_appointment_details_correct()
+        except:
+            allure.attach(self.biomagnetisServicemObj.driver.get_screenshot_as_png(),name="Appointment Contact Information Error", attachment_type= allure.attachment_type.PNG)
+            with allure.step("Appointment Contact Information Is Failed"):
+                assert False
 
         

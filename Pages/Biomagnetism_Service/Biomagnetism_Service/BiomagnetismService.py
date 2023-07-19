@@ -302,6 +302,57 @@ class BiomagnetismService(BasePage):
                 with allure.step("Therapy With Dr. Garcia button is not working and redirect to related page"):
                     return False
 
+    def is_appointment_details_correct(self):
+        new_jersey = """New Jersey:
+Home Office 138 Riverbend Drive, North Brunswick, NJ 08902 (732) 983-8616 info@usbiomag.com
+Appointment Hours:
+ Monday 9am–6:30pm
+Tuesday Unavailable
+Wednesday Unavailable
+Thursday 9am–6:30pm
+Friday 9am–6:30pm
+Saturday Unavailable
+Sunday Unavailable"""
+
+        new_york = """Manhattan, NY:
+The Morrison Center
+461 Park Ave. South, 12th Floor, New York, NY 10016
+(212) 989-9828
+info@usbiomag.com
+Appointment Hours:
+Monday Unavailable
+Tuesday 9:30am–6:30pm
+Wednesday 9:30am–6:30pm
+Thursday Unavailable
+Friday Unavailable
+Saturday Unavailable
+Sunday Unavailable"""
+        with allure.step("Taking Body Content"):
+            body_content = self.get_text_from_element(BasePageElements.body)
+        with allure.step("Checking New Jersey Details"):
+            if new_jersey in body_content:
+                with allure.step("New Jersey Details Are Visible And Correct"):
+                    new_jersey_status = True
+            else:
+                with allure.step("New Jersey Details Are Not Visible And Correct"):
+                    new_jersey_status = False
+            
+        
+        with allure.step("Checking New York Details"):
+            if new_jersey in body_content:
+                with allure.step("New York Details Are Visible And Correct"):
+                    new_york_status = True
+            else:
+                with allure.step("New York Details Are Not Visible And Correct"):
+                    new_york_status = False
+        
+        if new_jersey_status and new_york_status:
+            with allure.step("New Jersey and New York Contact Information Are Visible And Correct"):
+                return True
+        else:
+            with allure.step("New Jersey and New York Contact Information Are Not Visible And Correct"):
+                return False
+
 
             
 
