@@ -86,11 +86,34 @@ class Review(BasePage):
 
         with allure.step("Taking all desises"):
             desisesElements = self.get_elements(ReviewElements.all_disease)
-        for element in desisesElements:
-            if element.text not in desises:
-                with allure.step("Some Desises Are Missing"):
-                    return False
-        with allure.step("All Desises Are Visible"):
+
+        with allure.step("Checking all desises filter visibility"):
+            for element in desisesElements:
+                if element.text not in desises:
+                    with allure.step("Some Desises Are Missing"):
+                        return False
+
+        with allure.step("Checking Disease Buttons Working Functionality"):
+            for desise in desises:
+                if desise == "All":
+                    continue
+                desise_button,desise_list = ReviewElements.get_each_disease_xpath(desise)
+
+                with allure.step(f"Clicked On {desise}"):
+                    self.do_click(desise_button)
+                    time.sleep(2)
+                    with allure.step("Checking Each Video Category"):
+                        desise_heading_list = self.get_elements(desise_list)
+                        for desise_heading in desise_heading_list:
+                            if desise_heading.text != desise:
+                                with allure.step("Some desises are not showing according to the desired filter"):
+                                    return False
+        with allure.step("Clicked On All"):
+            desise_button,desise_list = ReviewElements.get_each_disease_xpath("All")
+            self.do_click(desise_button)
+            time.sleep(2)
+            
+        with allure.step("All Desises Are Visible And Showing According To The Selected Filter"):
             return True
         
     def get_details_from_youtube_embed_video(self,element,iframe_screen):

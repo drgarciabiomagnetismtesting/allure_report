@@ -148,7 +148,7 @@ class BasePage:
         element = self.wait.until(EC.visibility_of_element_located(by_locator))
         return element.text
     
-    @allure.step("Taking Text from element")
+    
     def get_text_from_element_only(self,by_locator):
         """
         This Function used to get the text value from the web element and returned the value

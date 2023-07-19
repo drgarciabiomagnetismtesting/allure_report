@@ -67,7 +67,7 @@ class TestReview(BaseTest):
                 assert False
     
 
-    @allure.title("Test Case 17 : All Desises Button Visibility")
+    @allure.title("Test Case 17 : All Desises Button Visibility And Working Functionality")
     @allure.description_html("""
     <br><b>Test Case Description:</b>
     <br><br>Validate that Clinte review page all desises button are present and it is working as expected?

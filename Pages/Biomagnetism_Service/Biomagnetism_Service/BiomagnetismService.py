@@ -5,6 +5,7 @@ from Element_Locator.Biomagnetism_Service.Biomagnetism_Service.BiomagnetismServi
 import time
 import allure
 import pandas as pd
+import re
 
 
 class BiomagnetismService(BasePage):
@@ -352,6 +353,86 @@ Sunday Unavailable"""
         else:
             with allure.step("New Jersey and New York Contact Information Are Not Visible And Correct"):
                 return False
+
+    def extract_email_addresses(self,text):
+        pattern = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+        emails = re.findall(pattern, text)
+        if len(emails)>0:
+            with allure.step("Email is visible"):
+                return True
+        else:
+            with allure.step("Email is not visible"):
+                return False
+
+    def extract_phone_numbers(self,text):
+        pattern = r'\b(?:\+?\d{1,3}\s?-?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}\b'
+        phone_numbers = re.findall(pattern, text)
+        if len(phone_numbers)>0:
+            with allure.step("Phone numbers is visible"):
+                return True
+        else:
+            with allure.step("Phone numbers is not visible"):
+                return False
+
+    def extract_website_urls(self,text):
+        pattern = r'\b(?:https?://|www\.)\S+\b'
+        urls = re.findall(pattern, text)
+        if len(urls)>0:
+            with allure.step("Website is visible"):
+                return True
+        else:
+            with allure.step("Website is not visible"):
+                return False
+
+    def get_doctors_status(self,name,image_xpath,caption_xpath):
+        
+        with allure.step(f"Checking {name} details"):
+            with allure.step("Checking Image Visibility"):
+                image_status = self.get_element_visibility(image_xpath)
+            
+            with allure.step(f"Checking Email,Phone Number and Website Visibility"):
+                caption = self.get_text_from_element_only(caption_xpath)
+                
+                with allure.step("Checking Email"):
+                    email_status = self.extract_email_addresses(caption)
+                
+                with allure.step("Checking Phone Number"):
+                   phone_status = self.extract_phone_numbers(caption)
+
+                with allure.step("Checking Website"):
+                   website_status = self.extract_website_urls(caption)
+            if email_status and phone_status and website_status:
+                return 1
+            else:
+                return 0
+    
+
+    def is_all_doctors_details_are_correct(self):
+
+
+        with allure.step("Taking all doctors count"):
+            total_doctors_count = len(self.get_elements(BiomagnetismServiceElements.all_doctors))
+            print (total_doctors_count)
+        doctor_missing_details_count = 0
+        for index in range(total_doctors_count):
+            index = index + 1
+            image_xpath,name_xpath,caption_xpath = BiomagnetismServiceElements.get_doctor_xpaths(index)
+            name = self.get_text_from_element_only(name_xpath)
+            count = self.get_doctors_status(name,image_xpath,caption_xpath)
+            doctor_missing_details_count = doctor_missing_details_count + count
+        
+        if doctor_missing_details_count>0:
+            with allure.step("Some doctor all details are not available"):
+                return False
+        else:
+            with allure.step("All details are available"):
+                return True
+
+
+        
+
+
+
 
 
             

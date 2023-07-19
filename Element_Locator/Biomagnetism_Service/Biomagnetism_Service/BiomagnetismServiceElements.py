@@ -19,3 +19,10 @@ class BiomagnetismServiceElements:
     find_a_therapy = (By.XPATH,"(//span[@class='menu-text'][normalize-space()='Find a Therapist'])[1]")
     therapy_with_dr_garcia = (By.XPATH,"(//span[@class='menu-text'][normalize-space()='Therapy with Dr. Garcia'])[1]")
     
+    all_doctors = (By.XPATH,"(//figure[@class='vp-portfolio__item'])")
+    def get_doctor_xpaths(index_number):
+        doctor_image = (By.XPATH,f"(//figure[@class='vp-portfolio__item'])[{index_number}]/div/div/img") 
+        doctor_name = (By.XPATH,f"(//figure[@class='vp-portfolio__item'])[{index_number}]/figcaption/div/h2")
+        doctor_caption = (By.XPATH,f"(//figure[@class='vp-portfolio__item'])[{index_number}]/figcaption/div/div/div")
+        return doctor_image,doctor_name,doctor_caption
+    

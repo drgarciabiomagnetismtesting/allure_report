@@ -103,6 +103,25 @@ class TestBiomagnetismService(BaseTest):
             allure.attach(self.biomagnetisServicemObj.driver.get_screenshot_as_png(),name="Load More Functionality Error", attachment_type= allure.attachment_type.PNG)
             with allure.step("Load More Functionality Is Failed"):
                 assert False
+    
+    @allure.title("Test Case 15 : Doctor's Email Address, Phone Number, Website visibility")
+    @allure.description_html("""
+    <br><b>Test Case Description:</b>
+    <br><br>validate, each therapist image is displayed and below address, email and website is added
+    
+    <br><br><b>Expeceted Results:</b>
+    <br><br>In find a new therapist, doctors image and their address should be displayed
+    
+    """)
+    def test_all_doctors_details_are_correct(self):
+        
+        
+        try:
+            assert self.biomagnetisServicemObj.is_all_doctors_details_are_correct()
+        except:
+            allure.attach(self.biomagnetisServicemObj.driver.get_screenshot_as_png(),name="Doctor's Email Address, Phone Number, Website visibility Error", attachment_type= allure.attachment_type.PNG)
+            with allure.step("Doctor's Email Address, Phone Number, Website visibility Is Failed"):
+                assert False
 
     
     @allure.title("Test Case 18 : Therapy With Dr. Garcia Button is clickable and redirecting to related page") 
