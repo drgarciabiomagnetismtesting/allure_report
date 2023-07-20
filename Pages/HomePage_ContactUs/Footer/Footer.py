@@ -191,6 +191,7 @@ class Footer(BasePage):
         with allure.step("Switch To New Tab"):
             self.driver.switch_to.window(self.driver.window_handles[1])
         title = self.get_title()
+        self.driver.switch_to.window(self.driver.window_handles[0])
         if "Dr.Garcia backend" in title:
             with allure.step(f"DB Website Is Opened title : {title}"):
                 return True
