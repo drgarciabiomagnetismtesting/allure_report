@@ -5,6 +5,8 @@ import undetected_chromedriver as uc
 import os
 import shutil
 import time
+import json
+from Report_Modifier.report_post_actions import do_modification_on_report
 
 @pytest.fixture(scope= 'class')
 def init_driver(request):
@@ -20,6 +22,8 @@ def init_driver(request):
 
     yield
     web_driver.close()
+
+
 
 
 @pytest.hookimpl(tryfirst=True)
@@ -41,6 +45,8 @@ def pytest_sessionfinish(session, exitstatus):
         os.system(remove_docs_cmd)
         time.sleep(5)
         os.system(rename_allure_report)
+        time.sleep(3)
+        do_modification_on_report()
         os.system(git_status)
         os.system(git_add)
         os.system(git_commit)

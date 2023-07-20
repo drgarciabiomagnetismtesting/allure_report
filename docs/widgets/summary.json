@@ -1,1 +1,1 @@
-{"reportName":"Allure Report","testRuns":[],"statistic":{"failed":6,"broken":0,"skipped":0,"passed":64,"unknown":0,"total":70},"time":{"start":1689766840629,"stop":1689767993715,"duration":1153086,"minDuration":98,"maxDuration":268176,"sumDuration":1138118}}
+{"reportName": "Dr. Garciabiomagnetism Website Report", "testRuns": [], "statistic": {"failed": 8, "broken": 1, "skipped": 0, "passed": 61, "unknown": 0, "total": 70}, "time": {"start": 1689848206415, "stop": 1689849435551, "duration": 1229136, "minDuration": 93, "maxDuration": 261675, "sumDuration": 1213478}}
