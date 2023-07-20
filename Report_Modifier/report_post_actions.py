@@ -1,6 +1,6 @@
 import os
 import json
-from Data_Files.logo_data import *
+from logo_data import *
 
 def replace_json_part(file_path):
    
@@ -13,13 +13,16 @@ def replace_json_part(file_path):
         json.dump(json_data, file)
 
 def replace_css_data(file_path, search_data, replace_data):
-    
+    print(file_path)
     with open(file_path, 'r') as file:
         css_content = file.read()
-    file.close()
+    
     
     updated_css_content = css_content.replace(search_data, replace_data)
-
+    
+    with open("test.txt", "w") as f:
+        f.write(updated_css_content)
+    f.close()
     
     with open(file_path, 'w') as file:
         file.write(updated_css_content)
@@ -40,7 +43,7 @@ def replace_title(file_path, old_title, new_title):
 
 def replace_fav_icon():
     os.remove("docs/favicon.ico")
-    os.system("cp Data_Files/favicon.ico docs")
+    os.system("cp Report_Modifier/favicon.ico docs")
 
 def do_modification_on_report():
     file_path = "docs/widgets/summary.json"
@@ -67,7 +70,7 @@ def do_modification_on_report():
 
     replace_json_part(file_path)
     replace_css_data(css_file, logo1, logo_url)
-    replace_css_data(css_file, logo_name, logo_name_hidden)
+    # replace_css_data(css_file, logo_name, logo_name_hidden)
     replace_title(html_file,old_title,new_title)
     replace_fav_icon()
 
