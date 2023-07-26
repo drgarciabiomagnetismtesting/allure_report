@@ -16,7 +16,7 @@ def replace_json_part(file_path):
         json_data = json.load(file)
 
    
-    json_data["reportName"] = "Dr. Garciabiomagnetism Website Report"
+    json_data["reportName"] = "Dr. Garciabiomagnetism Website Testing Report"
     with open(file_path, 'w') as file:
         json.dump(json_data, file)
 
@@ -137,7 +137,7 @@ def pytest_sessionfinish(session, exitstatus):
 
        
         
-        print("Report Hosted : https://drgarciabiomagnetismtesting.github.io/allure_report/")
+        print("Report Hosted : https://drgarciabiomagnetismtesting.github.io/report/")
 
 def pytest_configure(config):
     
